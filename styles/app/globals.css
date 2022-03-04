@@ -4,6 +4,9 @@ html {
   font-size: 18px;
   font-family: "Inter", sans-serif;
   color: white;
+  background: #6441a5;
+  background: -webkit-linear-gradient(to right, #431469, #6441a5);
+  background: linear-gradient(to bottom right, #1d0336, #2f1263);
 }
 
 p {

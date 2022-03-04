@@ -1,0 +1,8 @@
+.section__container {
+  max-width: 1300px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding: 0 50px;
+  margin: 0 auto;
+}
