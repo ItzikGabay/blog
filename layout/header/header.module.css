@@ -1,0 +1,26 @@
+.header__container {
+  position: relative;
+  background: #6441a5;
+  background: -webkit-linear-gradient(to right, #2a0845, #6441a5);
+  background: linear-gradient(to right, #2a0845, #6441a5);
+}
+
+.header__content {
+  display: flex;
+  flex-direction: column;
+  max-width: 1300px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.header__img {
+  width: 100%;
+  display: flex;
+  margin-top: 100px;
+}
+
+.header__img img {
+  background-size: cover;
+  width: 3000px !important;
+  overflow: hidden;
+}

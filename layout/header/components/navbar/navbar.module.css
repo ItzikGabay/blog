@@ -1,10 +1,9 @@
 .nav__container {
-  max-width: 1300px;
-  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 16px 0;
+  margin-top: 25px;
 }
 
 .nav__left {
@@ -16,9 +15,15 @@
 
 .nav__left_logo {
   margin-right: 50px;
-  color: rgb(40, 148, 206);
+  color: #ff21a6;
   font-weight: 300;
   font-size: 1.2rem;
+}
+
+.nav__left_logo:hover {
+  transition: 0.3s;
+  font-size: 1.3rem;
+  font-weight: 700;
 }
 
 .nav__left_links {
@@ -28,6 +33,12 @@
 
 .nav__left_links > * {
   margin-right: 30px;
+}
+
+.nav__left_link:hover {
+  cursor: pointer;
+  color: blueviolet;
+  transition: 0.3s;
 }
 
 .nav__right {
