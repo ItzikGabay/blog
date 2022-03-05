@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "gray-matter": "^4.0.3",
     "material-icons": "^1.10.7",
     "next": "12.1.0",
     "react": "17.0.2",

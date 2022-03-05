@@ -1,4 +1,9 @@
 import React, { useEffect } from "react";
+
+import fs from "fs";
+import path from "path";
+import matter from "gray-matter";
+
 import type { GetStaticPropsContext, GetStaticPropsResult, NextPage } from "next";
 import styles from "../styles/pages/home.module.css";
 
@@ -33,9 +38,29 @@ const Home: NextPage<IIndexPageProps> = ({ posts }) => {
 export default Home;
 
 export function getStaticProps(context: GetStaticPropsContext): GetStaticPropsResult<Params> {
+  // Get files from the posts directory
+  const files = fs.readdirSync(path.join("services", "mdx", "posts"));
+
+  const postsFileNames = files.map(file => {
+    // Replacing file name
+    const slug = file.replace(".md", "");
+
+    // Retreiving the frontmatter metadata
+    const markdownMetadata = fs.readFileSync(path.join("services", "mdx", "posts", file), "utf-8");
+
+    const { data: frontmatter } = matter(markdownMetadata);
+
+    return {
+      slug,
+      frontmatter,
+    };
+  });
+
+  console.log(postsFileNames);
+
   return {
     props: {
-      posts: "This is post",
+      posts: postsFileNames,
     },
   };
 }
