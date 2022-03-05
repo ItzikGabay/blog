@@ -2,11 +2,23 @@
   .home__container {
     flex-direction: column;
   }
+  .home__content {
+    width: 100%;
+  }
+  .home__sidebar {
+    width: 100%;
+  }
 }
 
 @media screen and (min-width: 800px) {
   .home__container {
     flex-direction: row;
+  }
+  .home__content {
+    width: 70%;
+  }
+  .home__sidebar {
+    width: 30%;
   }
 }
 
@@ -14,11 +26,4 @@
   display: flex;
   row-gap: 50px;
   padding: 40px 0;
-}
-
-.home__content {
-  width: 70%;
-}
-.home__sidebar {
-  width: 30%;
 }

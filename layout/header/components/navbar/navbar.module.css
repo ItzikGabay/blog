@@ -1,15 +1,28 @@
+/* Mobile responsive */
+@media screen and (max-width: 1024px) {
+  .nav__left {
+    padding-left: 0px;
+  }
+}
+/* Web design */
+@media screen and (min-width: 1024px) {
+  .nav__left {
+    padding-left: 50px;
+  }
+}
+
 .nav__container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 16px 0;
   margin-top: 25px;
+  flex-wrap: wrap;
 }
 
 .nav__left {
   display: flex;
   align-items: center;
-  padding-left: 50px;
   font-size: 0.8rem;
 }
 
@@ -35,6 +48,13 @@
   margin-right: 30px;
 }
 
+.nav__left_link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
 .nav__left_link:hover {
   cursor: pointer;
   color: blueviolet;
@@ -43,4 +63,11 @@
 
 .nav__right {
   padding-right: 50px;
+}
+
+.nav__right_buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
 }

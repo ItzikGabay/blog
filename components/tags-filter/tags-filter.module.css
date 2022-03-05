@@ -1,0 +1,6 @@
+.tagsfilter__container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  max-width: 300px;
+}

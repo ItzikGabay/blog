@@ -1,0 +1,15 @@
+.tag__container {
+  padding: 7px 15px;
+  background-color: rgb(214, 214, 214);
+  width: min-content;
+  color: rgb(0, 0, 0, 0.8);
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.8rem;
+}
+
+.tag__container:hover {
+  background-color: #e7008a;
+  color: white;
+  transition: 0.3s;
+}

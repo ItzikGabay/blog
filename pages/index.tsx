@@ -11,11 +11,10 @@ const Home: NextPage = () => {
     <ThemeSection>
       <div className={styles.home__container}>
         <div className={styles.home__content}>
-          <ThemeSectionTitle label="Latest posts" />
+          <ThemeSectionTitle label="Latest posts" icon="mark_as_unread" />
           <PostList />
         </div>
         <div className={styles.home__sidebar}>
-          <ThemeSectionTitle label="Sidebar" />
           <Sidebar />
         </div>
       </div>

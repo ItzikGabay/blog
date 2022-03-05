@@ -3,4 +3,21 @@
   font-size: 1.2rem;
   color: #e7008a;
   padding-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.section_title__container span {
+  margin-right: 15px;
+  font-size: 20px;
+}
+
+.section_title__underline {
+  font-weight: 700;
+}
+
+.section_title__underline:hover {
+  opacity: 0;
+  transition: 0.5s;
 }
