@@ -1,0 +1,12 @@
+.home__container {
+  display: flex;
+  row-gap: 50px;
+  padding: 40px 0;
+}
+
+.home__content {
+  width: 70%;
+}
+.home__sidebar {
+  width: 30%;
+}

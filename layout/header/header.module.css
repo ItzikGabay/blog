@@ -16,11 +16,18 @@
 .header__img {
   width: 100%;
   display: flex;
-  margin-top: 100px;
+  margin-top: 50px;
 }
 
 .header__img img {
   background-size: cover;
   width: 3000px !important;
   overflow: hidden;
+  opacity: 0.1;
+  transition: 0.5s;
+}
+
+.header__img img:hover {
+  opacity: 0.3;
+  transition: 0.5s;
 }
