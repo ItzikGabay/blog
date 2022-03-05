@@ -11,17 +11,13 @@ interface ISlugProps {
   content: any;
 }
 
-const Slug = ({ frontmatter, slug, content }: ISlugProps) => {
-  return (
-    <div>
-      <div dangerouslySetInnerHTML={{ __html: marked(content) }}></div>
-    </div>
-  );
+const Slug = ({ content }: ISlugProps) => {
+  return <div dangerouslySetInnerHTML={{ __html: marked(content) }}></div>;
 };
 
 export default Slug;
 
-export async function getStaticPaths<GetStaticPaths>() {
+export async function getStaticPaths() {
   const files = fs.readdirSync(path.join("services", "mdx", "posts"));
 
   const paths = files.map(file => ({ params: { slug: file.replace(".md", "") } }));

@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 
-import type { GetStaticPropsContext, GetStaticPropsResult, NextPage } from "next";
+import type { GetStaticPropsResult, NextPage } from "next";
 import styles from "../styles/pages/home.module.css";
 
 import { ThemeSection } from "../components/UI/theme-section/theme-section";
@@ -14,18 +14,21 @@ import Sidebar from "../components/sidebar/sidebar";
 import { Params } from "next/dist/server/router";
 
 interface IIndexPageProps {
-  posts: String | Array<Object>;
+  posts: Array<IPostProps>;
+}
+
+interface IPostProps {
+  slug: string;
+  frontmatter: any;
 }
 
 const Home: NextPage<IIndexPageProps> = ({ posts }) => {
-  console.log(posts);
-
   return (
     <ThemeSection>
       <div className={styles.home__container}>
         <div className={styles.home__content}>
           <ThemeSectionTitle label="Latest posts" icon="mark_as_unread" />
-          <PostList />
+          <PostList data={posts} />
         </div>
         <div className={styles.home__sidebar}>
           <Sidebar />
@@ -37,7 +40,7 @@ const Home: NextPage<IIndexPageProps> = ({ posts }) => {
 
 export default Home;
 
-export function getStaticProps(context: GetStaticPropsContext): GetStaticPropsResult<Params> {
+export function getStaticProps(): GetStaticPropsResult<Params> {
   // Get files from the posts directory
   const files = fs.readdirSync(path.join("services", "mdx", "posts"));
 

@@ -2,6 +2,7 @@
 title: "First post"
 date: "Januar 01 2022"
 excerpt: "This is excerpt"
+description: "This is the description for this post"
 cover_image: "../../../assets/posts/01-first-posts.png"
 ---
 

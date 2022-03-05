@@ -1,13 +1,20 @@
 import PostItem from "../post-item/post-item";
 
-const PostList = () => {
-  return (
-    <div>
-      <PostItem />
-      <PostItem />
-      <PostItem />
-    </div>
-  );
+interface IPostListProps {
+  data: Array<IPostProps>;
+}
+
+interface IPostProps {
+  slug: string;
+  frontmatter: any;
+}
+
+const PostList = ({ data }: IPostListProps) => {
+  const renderPostItems = data.map(post => (
+    <PostItem key={post.slug} title={post.frontmatter.title} desc={post.frontmatter.description} />
+  ));
+
+  return <div>{renderPostItems}</div>;
 };
 
 export default PostList;
