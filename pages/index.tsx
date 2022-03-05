@@ -56,8 +56,6 @@ export function getStaticProps(context: GetStaticPropsContext): GetStaticPropsRe
     };
   });
 
-  console.log(postsFileNames);
-
   return {
     props: {
       posts: postsFileNames,
