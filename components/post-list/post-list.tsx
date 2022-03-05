@@ -11,7 +11,12 @@ interface IPostProps {
 
 const PostList = ({ data }: IPostListProps) => {
   const renderPostItems = data.map(post => (
-    <PostItem key={post.slug} title={post.frontmatter.title} desc={post.frontmatter.description} />
+    <PostItem
+      key={post.slug}
+      title={post.frontmatter.title}
+      desc={post.frontmatter.description}
+      path={post.slug}
+    />
   ));
 
   return <div>{renderPostItems}</div>;
