@@ -1,5 +1,13 @@
+import PostItem from "../post-item/post-item";
+
 const PostList = () => {
-  return <div>List</div>;
+  return (
+    <div>
+      <PostItem />
+      <PostItem />
+      <PostItem />
+    </div>
+  );
 };
 
 export default PostList;

@@ -1,3 +1,15 @@
+@media screen and (max-width: 800px) {
+  .home__container {
+    flex-direction: column;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .home__container {
+    flex-direction: row;
+  }
+}
+
 .home__container {
   display: flex;
   row-gap: 50px;
