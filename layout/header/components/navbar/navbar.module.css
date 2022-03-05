@@ -60,6 +60,7 @@
 .nav__left_logo {
   color: #ff21a6;
   font-weight: 300;
+  cursor: pointer;
 }
 
 .nav__left_logo:hover {

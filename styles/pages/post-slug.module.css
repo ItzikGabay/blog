@@ -1,0 +1,12 @@
+.slug__container code {
+  background-color: gray;
+}
+
+.go_back__button {
+  margin-top: 30px;
+  padding: 10px;
+  color: white;
+  background-color: #ff21a6;
+  width: max-content;
+  cursor: pointer;
+}
