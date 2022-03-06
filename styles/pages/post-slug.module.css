@@ -3,10 +3,17 @@
 }
 
 .go_back__button {
-  margin-top: 30px;
+  margin-top: 40px;
+  margin-bottom: 50px;
   padding: 10px;
   color: white;
   background-color: #ff21a6;
   width: max-content;
   cursor: pointer;
+}
+
+.slug__title {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 10px;
 }

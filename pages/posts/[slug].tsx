@@ -21,9 +21,9 @@ const Slug = ({ frontmatter, content }: ISlugProps) => {
     <ThemeSection>
       <div className={styles.slug__container}>
         <p className={styles.go_back__button} onClick={() => router.push(`/`)}>
-          ^ GO BACK
+          ^ Go back
         </p>
-        <h1>{frontmatter.title}</h1>
+        <h1 className={styles.slug__title}>{frontmatter.title}</h1>
 
         <div dangerouslySetInnerHTML={{ __html: marked(content) }}></div>
       </div>
