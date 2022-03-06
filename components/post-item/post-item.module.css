@@ -34,6 +34,7 @@
 }
 
 .post_item__readmore:hover {
-  font-size: 1.2rem;
-  transition: 0.5s;
+  font-weight: 300;
+  color: #ff21a6;
+  transition: 0.2s;
 }
