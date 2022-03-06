@@ -1,3 +1,4 @@
+import React from "react";
 import styles from "../../styles/pages/post-slug.module.css";
 import { useRouter } from "next/router";
 
@@ -9,6 +10,9 @@ import { Params } from "next/dist/server/router";
 import path from "path";
 import { ThemeSection } from "../../components/UI/theme-section/theme-section";
 
+import { bundleMDX } from "mdx-bundler";
+import { getMDXComponent } from "mdx-bundler/client";
+
 interface ISlugProps {
   frontmatter: any;
   slug: any;
@@ -16,6 +20,8 @@ interface ISlugProps {
 }
 
 const Slug = ({ frontmatter, content }: ISlugProps) => {
+  const Component = React.useMemo(() => getMDXComponent(content), [content]);
+
   const router = useRouter();
   return (
     <ThemeSection>
@@ -24,8 +30,7 @@ const Slug = ({ frontmatter, content }: ISlugProps) => {
           ^ Go back
         </p>
         <h1 className={styles.slug__title}>{frontmatter.title}</h1>
-
-        <div dangerouslySetInnerHTML={{ __html: marked(content) }}></div>
+        <Component />
       </div>
     </ThemeSection>
   );
@@ -41,7 +46,7 @@ export async function getStaticPaths() {
   return { paths, fallback: false };
 }
 
-export function getStaticProps(context: GetStaticPropsContext): GetStaticPropsResult<Params> {
+export async function getStaticProps(context: GetStaticPropsContext): Promise<any> {
   const slug = context?.params?.slug as string;
 
   const markdownMetadata = fs.readFileSync(
@@ -49,14 +54,42 @@ export function getStaticProps(context: GetStaticPropsContext): GetStaticPropsRe
     "utf-8",
   );
 
-  const { data: frontmatter, content } = matter(markdownMetadata);
-  console.log(content);
+  const componentFile = fs.readFileSync(
+    path.join("components", "UI", "theme-tag", "theme-tag.tsx"),
+  );
+
+  const componentBuf = Buffer.from(componentFile);
+  const componentData = componentBuf.toString();
+
+  // console.log(markdownMetadata);
+
+  const mdxSource = markdownMetadata;
+
+  const result = await bundleMDX({
+    source: mdxSource,
+    files: {
+      "../../components/UI/theme-tag/theme-tag.tsx": componentData,
+    },
+  });
+
+  const { code: content, frontmatter } = result;
+  console.log(result);
 
   return {
     props: {
       frontmatter,
-      slug,
       content,
     },
   };
+
+  // const { data: frontmatter, content } = matter(markdownMetadata);
+  // // console.log(content);
+
+  // return {
+  //   props: {
+  //     frontmatter,
+  //     slug,
+  //     content,
+  //   },
+  // };
 }
