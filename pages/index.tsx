@@ -46,7 +46,7 @@ export function getStaticProps(): GetStaticPropsResult<Params> {
 
   const postsFileNames = files.map(file => {
     // Replacing file name
-    const slug = file.replace(".md", "");
+    const slug = file.replace(".mdx", "");
 
     // Retreiving the frontmatter metadata
     const markdownMetadata = fs.readFileSync(path.join("services", "mdx", "posts", file), "utf-8");

@@ -86,7 +86,7 @@
 
 .nav__left_link:hover {
   cursor: pointer;
-  color: blueviolet;
+  color: #ff21a6;
   transition: 0.3s;
 }
 

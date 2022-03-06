@@ -6,6 +6,8 @@ description: "This is the description for this post"
 cover_image: "../../../assets/posts/01-first-posts.png"
 ---
 
+import ThemeTag from "../../../components/UI/theme-tag/theme-tag";
+
 ## Hello world
 
 ### IF YOU SEE THAT, this is working!
@@ -17,3 +19,18 @@ It is look nice or not?
 - One
 - Two
 - Three
+
+<ThemeTag>
+
+html
+
+<ThemeTag />
+
+```jsx
+import React from "react";
+import Button from "rsg-example/components/Button";
+import Placeholder from "rsg-example/components/Placeholder";
+<Button>
+  <Placeholder />
+</Button>;
+```

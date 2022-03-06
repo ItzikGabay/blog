@@ -36,7 +36,7 @@ export default Slug;
 export async function getStaticPaths() {
   const files = fs.readdirSync(path.join("services", "mdx", "posts"));
 
-  const paths = files.map(file => ({ params: { slug: file.replace(".md", "") } }));
+  const paths = files.map(file => ({ params: { slug: file.replace(".mdx", "") } }));
 
   return { paths, fallback: false };
 }
@@ -45,7 +45,7 @@ export function getStaticProps(context: GetStaticPropsContext): GetStaticPropsRe
   const slug = context?.params?.slug as string;
 
   const markdownMetadata = fs.readFileSync(
-    path.join("services", "mdx", "posts", slug + ".md"),
+    path.join("services", "mdx", "posts", slug + ".mdx"),
     "utf-8",
   );
 
