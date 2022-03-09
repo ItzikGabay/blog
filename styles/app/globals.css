@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800&display=swap");
 @import "../../components/UI/theme-tag/theme-tag.css";
+@import "../../components/mdx-components/test/test.css";
 
 html {
   font-size: 18px;

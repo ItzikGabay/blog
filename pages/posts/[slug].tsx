@@ -2,11 +2,8 @@ import React from "react";
 import styles from "../../styles/pages/post-slug.module.css";
 import { useRouter } from "next/router";
 
-import matter from "gray-matter";
 import fs from "fs";
-import { marked } from "marked";
-import { GetStaticPropsContext, GetStaticPropsResult } from "next";
-import { Params } from "next/dist/server/router";
+import { GetStaticPropsContext } from "next";
 import path from "path";
 import { ThemeSection } from "../../components/UI/theme-section/theme-section";
 
@@ -49,6 +46,20 @@ export async function getStaticPaths() {
 export async function getStaticProps(context: GetStaticPropsContext): Promise<any> {
   const slug = context?.params?.slug as string;
 
+  const ComponentsShortFilesNames = fs.readdirSync(path.join("components", "mdx-components"));
+
+  const mdxComponents: any = ComponentsShortFilesNames.map(file => {
+    const componentCode = fs.readFileSync(
+      path.join("components", "mdx-components", file, file + ".tsx"),
+      "utf8",
+    );
+
+    const filePath = `../../components/mdx-components/${file}/${file}.tsx`;
+    return {
+      [filePath]: componentCode,
+    };
+  });
+
   const markdownMetadata = fs.readFileSync(
     path.join("services", "mdx", "posts", slug + ".mdx"),
     "utf-8",
@@ -60,20 +71,28 @@ export async function getStaticProps(context: GetStaticPropsContext): Promise<an
 
   const componentBuf = Buffer.from(componentFile);
   const componentData = componentBuf.toString();
-
-  // console.log(markdownMetadata);
-
   const mdxSource = markdownMetadata;
 
-  const result = await bundleMDX({
-    source: mdxSource,
+  const files: any = {
     files: {
       "../../components/UI/theme-tag/theme-tag.tsx": componentData,
     },
+  };
+
+  console.log("MDXComponents", mdxComponents);
+
+  for (let i = 0; i < mdxComponents.length; i++) {
+    files.files = { ...files["files"], ...mdxComponents[i] };
+  }
+
+  console.log(files);
+
+  const result = await bundleMDX({
+    source: mdxSource,
+    files: files["files"],
   });
 
   const { code: content, frontmatter } = result;
-  console.log(result);
 
   return {
     props: {
@@ -81,15 +100,4 @@ export async function getStaticProps(context: GetStaticPropsContext): Promise<an
       content,
     },
   };
-
-  // const { data: frontmatter, content } = matter(markdownMetadata);
-  // // console.log(content);
-
-  // return {
-  //   props: {
-  //     frontmatter,
-  //     slug,
-  //     content,
-  //   },
-  // };
 }
