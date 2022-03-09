@@ -4,9 +4,13 @@ interface IPostListProps {
   data: Array<IPostProps>;
 }
 
+interface FrontmatterProps {
+  title: string;
+  description: string;
+}
 interface IPostProps {
   slug: string;
-  frontmatter: any;
+  frontmatter: FrontmatterProps;
 }
 
 const PostList = ({ data }: IPostListProps) => {

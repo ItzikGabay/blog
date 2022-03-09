@@ -1,7 +1,13 @@
 import styles from "./post-item.module.css";
 import { useRouter } from "next/router";
 
-const PostItem = ({ title, desc, path }: any) => {
+interface PostItemProps {
+  title: string;
+  desc: string;
+  path: string;
+}
+
+const PostItem = ({ title, desc, path }: PostItemProps) => {
   const router = useRouter();
 
   return (

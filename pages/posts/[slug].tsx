@@ -10,10 +10,14 @@ import { ThemeSection } from "../../components/UI/theme-section/theme-section";
 import { bundleMDX } from "mdx-bundler";
 import { getMDXComponent } from "mdx-bundler/client";
 
+interface FrontmatterProps {
+  title: string;
+}
+
 interface ISlugProps {
-  frontmatter: any;
-  slug: any;
-  content: any;
+  frontmatter: FrontmatterProps;
+  slug: string;
+  content: string;
 }
 
 const Slug = ({ frontmatter, content }: ISlugProps) => {
@@ -40,60 +44,65 @@ export async function getStaticPaths() {
 
   const paths = files.map(file => ({ params: { slug: file.replace(".mdx", "") } }));
 
+  // fallback option is for 404 pages.
   return { paths, fallback: false };
 }
 
-export async function getStaticProps(context: GetStaticPropsContext): Promise<any> {
+// Passing down the frontmatter and content of the MDX file
+export async function getStaticProps(context: GetStaticPropsContext): Promise<object> {
   const slug = context?.params?.slug as string;
 
+  // Getting short values of the names, (e.g "["test-component", "another-test")
   const ComponentsShortFilesNames = fs.readdirSync(path.join("components", "mdx-components"));
 
-  const mdxComponents: any = ComponentsShortFilesNames.map(file => {
+  // Extracting all the names of the components from our MDX components folder
+  const mdxComponents: object[] = ComponentsShortFilesNames.map(file => {
     const componentCode = fs.readFileSync(
       path.join("components", "mdx-components", file, file + ".tsx"),
       "utf8",
     );
 
+    // That's how mdx-bundler want the schema to be:
     const filePath = `../../components/mdx-components/${file}/${file}.tsx`;
     return {
       [filePath]: componentCode,
     };
   });
 
-  const markdownMetadata = fs.readFileSync(
-    path.join("services", "mdx", "posts", slug + ".mdx"),
+  // Single file import
+  const componentFile: string = fs.readFileSync(
+    path.join("components", "UI", "theme-tag", "theme-tag.tsx"),
     "utf-8",
   );
 
-  const componentFile = fs.readFileSync(
-    path.join("components", "UI", "theme-tag", "theme-tag.tsx"),
-  );
+  interface FilesProp {
+    [key: string]: Record<string, string>;
+  }
 
-  const componentBuf = Buffer.from(componentFile);
-  const componentData = componentBuf.toString();
-  const mdxSource = markdownMetadata;
-
-  const files: any = {
+  // Default state with the single import
+  const files: FilesProp = {
     files: {
-      "../../components/UI/theme-tag/theme-tag.tsx": componentData,
+      "../../components/UI/theme-tag/theme-tag.tsx": componentFile,
     },
   };
 
-  console.log("MDXComponents", mdxComponents);
-
+  // Adding the mdx-components to the default state
   for (let i = 0; i < mdxComponents.length; i++) {
     files.files = { ...files["files"], ...mdxComponents[i] };
   }
 
-  console.log(files);
+  // Reading the MDX files from our MDX files folder
+  const mdxSource = fs.readFileSync(path.join("services", "mdx", "posts", slug + ".mdx"), "utf-8");
 
-  const result = await bundleMDX({
+  // Bundling the MDX file to one react component
+  const data = await bundleMDX({
     source: mdxSource,
     files: files["files"],
   });
 
-  const { code: content, frontmatter } = result;
+  const { code: content, frontmatter } = data;
 
+  // Passing the data to the react component
   return {
     props: {
       frontmatter,

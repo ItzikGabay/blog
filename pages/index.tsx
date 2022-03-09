@@ -14,10 +14,10 @@ import Sidebar from "../components/sidebar/sidebar";
 import { Params } from "next/dist/server/router";
 
 interface IIndexPageProps {
-  posts: Array<IPostProps>;
+  posts: Array<HomeProps>;
 }
 
-interface IPostProps {
+interface HomeProps {
   slug: string;
   frontmatter: any;
 }
