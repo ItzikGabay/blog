@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "../../styles/pages/post-slug.module.css";
-import { useRouter } from "next/router";
+// import { useRouter } from "next/router";
 
 import fs from "fs";
 import { GetStaticPropsContext } from "next";
@@ -23,14 +23,15 @@ interface ISlugProps {
 const Slug = ({ frontmatter, content }: ISlugProps) => {
   const Component = React.useMemo(() => getMDXComponent(content), [content]);
 
-  const router = useRouter();
+  // const router = useRouter();
   return (
     <ThemeSection>
       <div className={styles.slug__container}>
-        <p className={styles.go_back__button} onClick={() => router.push(`/`)}>
+        {/* <p className={styles.go_back__button} onClick={() => router.push(`/`)}>
           ^ Go back
-        </p>
+        </p> */}
         <h1 className={styles.slug__title}>{frontmatter.title}</h1>
+        <p className={styles.slug__author}>by @itzikdevio</p>
         <Component />
       </div>
     </ThemeSection>
