@@ -14,7 +14,7 @@ export const Header = () => {
       </div>
       <div
         className={styles.header__img}
-        style={{ height: router.pathname !== "/" ? "100px" : undefined }}>
+        style={{ maxHeight: router.pathname !== "/" ? "100px" : undefined }}>
         <Image src={wave} height={200} width={900} alt="navbar-image" />
       </div>
     </div>
