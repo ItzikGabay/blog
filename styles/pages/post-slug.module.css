@@ -1,13 +1,27 @@
 .slug__container code {
-  background-color: gray;
+  background-color: rgb(10, 10, 10);
+  color: rgb(207, 207, 207);
+  margin: 0.2rem 0.5rem;
+  padding: 0.2rem 0.5rem;
   display: flex;
   overflow: auto;
+  font-size: 14px;
+  width: 100%;
 }
 
 .slug__container img {
   display: flex;
+  flex-direction: column;
   overflow: auto;
   width: 100%;
+}
+
+.slug__container ul {
+  display: flex;
+  overflow: auto;
+  flex-direction: column;
+  margin-left: -25px;
+  width: calc(100% + 12.5px);
 }
 
 .go_back__button {
