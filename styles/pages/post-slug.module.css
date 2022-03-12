@@ -22,6 +22,13 @@
   width: calc(100% + 12.5px);
 }
 
+.slug__container table,
+.slug__container td,
+.slug__container th {
+  border: 1px solid white;
+  padding: 10px;
+}
+
 .go_back__button {
   margin-top: 40px;
   margin-bottom: 50px;
