@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "../../styles/pages/post-slug.module.css";
 // import { useRouter } from "next/router";
 
@@ -9,6 +9,9 @@ import { ThemeSection } from "../../components/UI/theme-section/theme-section";
 
 import { bundleMDX } from "mdx-bundler";
 import { getMDXComponent } from "mdx-bundler/client";
+
+import Prism from "prismjs";
+import "prismjs/themes/prism-tomorrow.css";
 
 interface FrontmatterProps {
   title: string;
@@ -21,6 +24,10 @@ interface ISlugProps {
 }
 
 const Slug = ({ frontmatter, content }: ISlugProps) => {
+  useEffect(() => {
+    Prism.highlightAll();
+  }, []);
+
   const Component = React.useMemo(() => getMDXComponent(content), [content]);
 
   // const router = useRouter();
