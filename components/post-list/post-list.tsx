@@ -1,5 +1,9 @@
 import PostItem from "../post-item/post-item";
 
+interface IPostProps {
+  slug: string;
+  frontmatter: FrontmatterProps;
+}
 interface IPostListProps {
   data: Array<IPostProps>;
 }
@@ -7,10 +11,6 @@ interface IPostListProps {
 interface FrontmatterProps {
   title: string;
   description: string;
-}
-interface IPostProps {
-  slug: string;
-  frontmatter: FrontmatterProps;
 }
 
 const PostList = ({ data }: IPostListProps) => {

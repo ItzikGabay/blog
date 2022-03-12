@@ -1,0 +1,10 @@
+.sidebar__popular_list {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar__popular {
+  cursor: pointer;
+  font-size: 14px;
+  margin: 10px 0;
+}

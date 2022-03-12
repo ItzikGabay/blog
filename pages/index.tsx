@@ -31,7 +31,7 @@ const Home: NextPage<IIndexPageProps> = ({ posts }) => {
           <PostList data={posts} />
         </div>
         <div className={styles.home__sidebar}>
-          <Sidebar />
+          <Sidebar data={posts} />
         </div>
       </div>
     </ThemeSection>
