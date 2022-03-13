@@ -13,6 +13,9 @@ import PostList from "../components/post-list/post-list";
 import Sidebar from "../components/sidebar/sidebar";
 import { Params } from "next/dist/server/router";
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const Fade = require("react-reveal/Fade");
+
 interface IIndexPageProps {
   posts: Array<HomeProps>;
 }
@@ -25,15 +28,17 @@ interface HomeProps {
 const Home: NextPage<IIndexPageProps> = ({ posts }) => {
   return (
     <ThemeSection>
-      <div className={styles.home__container}>
-        <div className={styles.home__content}>
-          <ThemeSectionTitle label="Latest posts" icon="mark_as_unread" />
-          <PostList data={posts} />
+      <Fade>
+        <div className={styles.home__container}>
+          <div className={styles.home__content}>
+            <ThemeSectionTitle label="Latest posts" icon="mark_as_unread" />
+            <PostList data={posts} />
+          </div>
+          <div className={styles.home__sidebar}>
+            <Sidebar data={posts} />
+          </div>
         </div>
-        <div className={styles.home__sidebar}>
-          <Sidebar data={posts} />
-        </div>
-      </div>
+      </Fade>
     </ThemeSection>
   );
 };

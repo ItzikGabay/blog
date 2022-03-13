@@ -16,7 +16,6 @@
 
 .slug__container ul {
   display: flex;
-  overflow: auto;
   flex-direction: column;
   margin-left: -25px;
   width: calc(100% + 12.5px);

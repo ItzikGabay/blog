@@ -13,6 +13,9 @@ import { getMDXComponent } from "mdx-bundler/client";
 import Prism from "prismjs";
 import "prismjs/themes/prism-tomorrow.css";
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const Fade = require("react-reveal/Fade");
+
 interface FrontmatterProps {
   title: string;
 }
@@ -33,14 +36,17 @@ const Slug = ({ frontmatter, content }: ISlugProps) => {
   // const router = useRouter();
   return (
     <ThemeSection>
-      <div className={styles.slug__container}>
-        {/* <p className={styles.go_back__button} onClick={() => router.push(`/`)}>
+      <Fade>
+        <div className={styles.slug__container}>
+          {/* <p className={styles.go_back__button} onClick={() => router.push(`/`)}>
           ^ Go back
         </p> */}
-        <h1 className={styles.slug__title}>{frontmatter.title}</h1>
-        <p className={styles.slug__author}>by @itzikdevio</p>
-        <Component />
-      </div>
+          <h1 className={styles.slug__title}>{frontmatter.title}</h1>
+
+          <p className={styles.slug__author}>by @itzikdevio</p>
+          <Component />
+        </div>
+      </Fade>
     </ThemeSection>
   );
 };
