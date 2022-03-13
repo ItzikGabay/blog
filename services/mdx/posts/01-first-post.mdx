@@ -32,10 +32,21 @@ Here a dynamic react component with import on the MDX file itself:
 <br />
 <ThemeTag label="#THISISANICETAG" />
 <Test />
-```js import React from "react"; import Button from "rsg-example/components/Button"; import
-Placeholder from "rsg-example/components/Placeholder";
 
-<Button>
-  <Placeholder />
-</Button>
+### For example, this is how the homepage looks like:
+
+```js
+<ThemeSection>
+  <Fade>
+    <div className={styles.home__container}>
+      <div className={styles.home__content}>
+        <ThemeSectionTitle label="Latest posts" icon="mark_as_unread" />
+        <PostList data={posts} />
+      </div>
+      <div className={styles.home__sidebar}>
+        <Sidebar data={posts} />
+      </div>
+    </div>
+  </Fade>
+</ThemeSection>
 ```
